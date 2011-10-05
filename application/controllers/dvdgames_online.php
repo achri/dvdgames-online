@@ -57,7 +57,9 @@ class Dvdgames_online extends DVD_Controller
     // menu
     'asset/src/jquery/plugins/other/jquery.lavalamp.js',
     'asset/src/jquery/plugins/other/jquery.easing.js',
-    // 
+    // other
+    'asset/src/jQuery/plugins/form/jquery.form.js',
+    // asset
     'asset/js/default.js',
     'asset/js/footer.js',
     'asset/js/menu.js',

@@ -96,7 +96,7 @@ $autoload['config'] = array('dvdgames_online');
 |
 */
 
-$autoload['language'] = array('info_page');
+$autoload['language'] = array();
 
 
 /*

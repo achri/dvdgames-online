@@ -12,6 +12,9 @@ $config['base_url'] = $wwwp.$_SERVER['SERVER_NAME'].'/dvdgames-online';
 $config['harga_dvd'] = 30000;
 $config['harga_cd'] = 15000;
 
+// LIMIT ITEM DVD
+$config['dvd_limit'] = 8;
+
 // EMAIL
 $config['email_admin'] = "administrator@localhost";
 $config['email_selles'] = "selles@localhost";

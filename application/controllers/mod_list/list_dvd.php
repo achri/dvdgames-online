@@ -21,11 +21,12 @@ class List_dvd extends DVD_Controller
   function __construct() 
   {
     parent::__construct();
-    $class = get_class($this);
+    $class = strtolower(get_class($this));
     $this->_loader();
     $output = array();
     $output += $this->_headerContent();
     $output += $this->_publicStatic($class);
+    $output += $this->_dataRecords();
     //$output += $this->_variable();
 
     $this->load->vars($output);
@@ -35,17 +36,26 @@ class List_dvd extends DVD_Controller
   // LOADER 
   function _loader()
   {
-  
+    $this->load->library(array(
+      "pagination",
+    ));
+    $this->load->helper(array(
+      "text",
+    ));
+    $this->load->model(array(
+      'tbl_category','tbl_dvd'
+    ));
   }
   // LOADER JS AND CSS
   function _headerContent()
   {
     $content = '';
     $arrayCSS = array(
-    
+    'asset/css/dvd.css',
     );
     $arrayJS = array(
-    
+    'asset/src/jQuery/plugins/other/jquery.mousewheel.js',
+    'asset/js/list_dvd.js',
     );
 
     if (is_array($arrayCSS))
@@ -72,10 +82,52 @@ class List_dvd extends DVD_Controller
     $output['link_controller'] = self::$link_controller;
     return $output;
   }
+  // GET DATA RECORDS
+  function _dataRecords()
+  {
+    $output['data_categories'] = $this->tbl_category->get_data_categories();
+    return $output;
+  }
   // INDEX
   function index()
   {
-    $this->load->view(self::$link_view.'/dvd_index');
+    $data[''] = '';
+    $this->load->view(self::$link_view.'/dvd_index',$data);
+  }
+  // LIST DVD
+  function get_list_dvds()
+  {
+    $page = $this->input->post('page');
+    $kat_id = $this->input->post('kat_id');
+    $dvd_nama = $this->input->post('dvd_nama');
+
+    $data['page'] = $page;
+    $data['kat_id'] = $kat_id;
+    $data['dvd_nama'] = $dvd_nama;
+    
+    // GET ROW COUNT OF SEARCHING RECORD
+    $count = $this->tbl_dvd->get_peritem_dvds($kat_id,$dvd_nama,0,FALSE)->num_rows();
+    $tot_page = ceil($count / $this->config->item('dvd_limit'));
+    $data['tot_page'] = $tot_page;
+    
+    // CALCULATION POSITION RECORD OF PAGE
+    $pos = $this->config->item('dvd_limit');
+    if( $count > 0 )
+      $total_pages = ceil($count/$pos);
+    else
+      $total_pages = 0;
+    if ($page > $total_pages)
+      $page=$total_pages;
+    $limitstart = $pos*$page - $pos; 
+    $limitstart = ($limitstart < 0)?0:$limitstart;
+    if( !isset($limitstart) || $limitstart == '' )
+      $limitstart = 0;
+    if( isset($limitstart) && !empty($pos) )
+      $pos = $limitstart;
+    // END
+    
+    $data['data_dvd'] = $this->tbl_dvd->get_peritem_dvds($kat_id,$dvd_nama,$pos,TRUE);
+    $this->load->view(self::$link_view.'/dvd_items',$data);
   }
 }
 

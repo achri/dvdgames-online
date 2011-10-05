@@ -116,14 +116,16 @@ if (!$this->config->item('uc')):
       </DIV>
     </DIV>
   </DIV>
+  <DIV id="content-wrap-full" class="content-wrap ui-widget-content" style="width:100%">
+  </DIV>
 
   <DIV id="footer-right" class="ui-widget ui-widget-header">
     <p>
-        <A href="#" module="home" onclick="menu_ajax('home');">home</A>
-        | <A href="#" module="list_dvd" onclick="menu_ajax('list_dvd');">dvd</A> 
-        | <A href="#" module="list_belanja" onclick="menu_ajax('list_belanja');">rincian</A> 
-        | <A href="#" module="tracking_data" onclick="menu_ajax('tracking_data');">tracking</A> 
-        | <A href="#" module="list_checklist" onclick="menu_ajax('list_checklist');">info list</A> 
+        <A href="#" module="home">home</A>
+        | <A href="#" module="list_dvd">dvd</A> 
+        | <A href="#" module="list_belanja">rincian</A> 
+        | <A href="#" module="list_tracking">tracking</A> 
+        | <A href="#" module="list_checklist">info list</A> 
     </p>
     <p id="owner"><a>&copy; 2011 dvdgames-online.com&trade; All Right Reserved</a></p>
   </DIV>

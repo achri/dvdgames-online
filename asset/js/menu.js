@@ -18,16 +18,40 @@ function menu_ajax(module,kat_id,dvd_nama)
 			controller = 'index.php/dvdgames_online/home';
 		break;
 		case 'about':
-			controller = '#';
+			controller = 'index.php/dvdgames_online/home';
 		break;
 		default:
 			controller = 'index.php/mod_'+mod_class[0]+'/'+module+'/index/'+kat_id+'/'+dvd_nama;
 		break;
 	}
   
-  $("#content-ajax").load(controller,function(data){
-
-  });
+  switch (mod_class[1]) {
+    case 'belanja' :
+			$("#content-wrap").hide();
+			$("#content-wrap-full").load(controller,function(data){
+				
+			}).show();
+		break;
+		case 'tracking' :
+			$("#content-wrap").hide();
+			$("#content-wrap-full").load(controller,function(data){
+				
+			}).show();
+		break;
+    case 'checklist' :
+			$("#content-wrap").hide();
+			$("#content-wrap-full").load(controller,function(data){
+				
+			}).show();
+		break;
+		default:
+			$("#content-wrap-full").hide();
+			$("#content-wrap").show();
+			$("#content-ajax").load(controller,function(data){
+      
+      });
+		break;
+	}
   
 	return controller;
 }

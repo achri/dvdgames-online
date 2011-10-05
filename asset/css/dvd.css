@@ -1,0 +1,64 @@
+.pagina {
+  float:left;
+  cursor:pointer;
+}
+
+#dvd_nama {
+  text-transform: uppercase;
+}
+
+div#dvd-box {
+	/*padding : 8px 0 0 0;*/
+	height:280px;
+	overflow: hide;
+}
+
+ul#dvd-box-list { 
+	width: 100%; 
+	height: 100%; 
+} * html #dvd-box-list { height: 12em; } /* IE6 */
+
+ul#dvd-box-list li {
+  float: left; 
+	width: 86px; 
+	padding: 5px;
+	margin: 8px 0 0 17px; 
+	text-align: center; 
+	z-index: 10;
+}
+
+ul.dvd-box-list li h5 { 
+	margin: 0 0 0.4em; 
+	cursor: move; 
+	height: 13px;
+	overflow: hidden;
+}
+ul.dvd-box-list li a { 
+	float: right; 
+}
+ul.dvd-box-list li a.ui-icon-zoomin { 
+	float: left; 
+}
+
+ul.dvd-box-list li table{ 
+	height:85px;
+	max-height:85px;
+	max-width:85px
+}
+
+ul.dvd-box-list li table img { 
+	/*width: 99%;*/
+	cursor: move; 
+	/*width: 85px;*/
+	max-height: 80px;
+}
+ul li.dvd-box-list-corner {
+	-moz-border-radius-topright: 14px;
+	-moz-border-radius-bottomleft: 14px;
+	-webkit-border-top-right-radius: 14px;
+	-webkit-border-bottom-left-radius: 14px;	
+}
+
+ul li.dvd-box-list-items{
+	list-style:none;
+}
